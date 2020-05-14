@@ -30,7 +30,7 @@ public class IntList {
      */
     public IntList() {
     /* NOTE: public IntList () { }  would also work. */
-        this(0, null);
+        this( 0, null);
     }
 
     /**
@@ -82,7 +82,12 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList ptr = A;
+        while (ptr.rest!=null){
+            ptr = ptr.rest;
+        }
+        ptr.rest = B;
+        return A;
     }
 
     /**
@@ -91,8 +96,18 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList newlist = new IntList(A.first,null);
+        IntList p = newlist;
+        IntList ptr = A.rest;
+        while (ptr!=null) {
+            p.rest = new IntList(ptr.first, null);
+            ptr = ptr.rest;
+            p = p.rest;
+        }
+        p.rest = B;
+        return  newlist;
     }
+
 
 
 
@@ -230,5 +245,8 @@ public class IntList {
         out.format(")");
         return out.toString();
     }
+
+
+
 }
 
