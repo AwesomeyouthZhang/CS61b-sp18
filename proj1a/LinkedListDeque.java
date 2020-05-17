@@ -37,7 +37,7 @@ public class LinkedListDeque<T> {
      */
     public void addFirst(T x) {
         IntNode temp = new IntNode(x, sentinel, sentinel.next);
-        sentinel.next .prev = temp;
+        sentinel.next.prev = temp;
         sentinel.next = temp;
         size += 1;
 

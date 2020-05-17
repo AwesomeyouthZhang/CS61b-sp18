@@ -33,8 +33,8 @@ public class ArrayDeque<T> {
             T[] temp = (T[]) new Object[size * 2];
             int n = items.length - 1;
             int backOfNextFirst = items.length - nextFirst;
-            System.arraycopy(items, nextFirst+1, temp, 0, backOfNextFirst-1);
-            System.arraycopy(items, 0, temp, backOfNextFirst-1, nextFirst+1);
+            System.arraycopy(items, nextFirst + 1, temp, 0, backOfNextFirst - 1);
+            System.arraycopy(items, 0, temp, backOfNextFirst - 1, nextFirst + 1);
             items = temp;
             nextFirst = items.length - 1;
             nextLast = n + 1;
@@ -122,17 +122,14 @@ public class ArrayDeque<T> {
 
     public void printDeque() {
 
-        int temp = (nextFirst +1) % items.length;
+        int temp = (nextFirst + 1) % items.length;
         for (int i = 0; i < size; i++) {
-                System.out.print(items[temp] + " ");
-                temp++;
-                temp = temp % items.length;
+            System.out.print(items[temp] + " ");
+            temp++;
+            temp = temp % items.length;
 
 
-            }
-
-
-
+        }
 
 
     }
