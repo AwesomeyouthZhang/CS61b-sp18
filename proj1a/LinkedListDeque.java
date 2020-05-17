@@ -4,7 +4,7 @@ public class LinkedListDeque<T> {
     private int size;
     private IntNode sentinel;
 
-   public class IntNode{
+   private class IntNode{
         public T item;
         public IntNode prev;
         public IntNode next;
@@ -18,7 +18,7 @@ public class LinkedListDeque<T> {
     /*
     * Creates an empty deque
     */
-    LinkedListDeque(){
+    public LinkedListDeque(){
         sentinel = new IntNode(null,null,null);
         /*
         * The sequence is crucial.
@@ -64,7 +64,12 @@ public class LinkedListDeque<T> {
     * Returns the number of items in the deque.
     */
     public int size(){
+
         return size;
+
+
+
+
     }
     /*
     * Prints the items in the deque from first to last.
@@ -88,6 +93,7 @@ public class LinkedListDeque<T> {
         T removedItem = sentinel.next.item;
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
+        size -= 1;
         return removedItem;
     }
     /*
@@ -101,6 +107,7 @@ public class LinkedListDeque<T> {
         T removedItem = sentinel.prev.item;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
+        size -= 1;
         return removedItem;
 
     }
