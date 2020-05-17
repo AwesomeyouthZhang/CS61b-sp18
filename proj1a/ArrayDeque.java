@@ -1,7 +1,6 @@
-import javax.swing.*;
-import java.net.PortUnreachableException;
 
-public class ArrayDeque <T> {
+
+public class ArrayDeque<T> {
     public int nextFirst;
     public int nextLast;
     private int size;
@@ -19,11 +18,11 @@ public class ArrayDeque <T> {
         if (nextLast > items.length) {
             nextLast = 0;
         }
-        if (nextFirst < 0 || nextFirst == items.length) {
+        if (nextFirst < 0) {
             nextFirst = items.length - 1;
         }
 
-        if (nextLast == nextFirst) {
+        if (size == items.length) {
             return true;
         }
         return false;
@@ -32,35 +31,37 @@ public class ArrayDeque <T> {
     public void resize() {
         if (resizeHelper()) {
             T[] temp = (T[]) new Object[size * 2];
-            int n = items.length;
-            int backOfNextFirst = n - nextFirst;
-            System.arraycopy(items, nextFirst, temp, 0, backOfNextFirst);
-            System.arraycopy(items, 0, temp, backOfNextFirst - 1, nextFirst);
+            int n = items.length - 1;
+            int backOfNextFirst = items.length - nextFirst;
+            System.arraycopy(items, nextFirst+1, temp, 0, backOfNextFirst-1);
+            System.arraycopy(items, 0, temp, backOfNextFirst-1, nextFirst+1);
             items = temp;
-            nextFirst = items.length;
-            nextLast = n - 1;
+            nextFirst = items.length - 1;
+            nextLast = n + 1;
 
         }
     }
 
     /*Adds an item of type T to the front of the deque.*/
     public void addFirst(T item) {
+        resize();
 
         items[nextFirst] = item;
 
+
         size += 1;
-        resize();
 
         nextFirst -= 1;
+
 
     }
 
     public void addLast(T item) {
-        size += 1;
         resize();
         items[nextLast] = item;
 
 
+        size += 1;
         nextLast += 1;
 
 
@@ -75,6 +76,7 @@ public class ArrayDeque <T> {
     }
 
     /*Returns the number of items in the deque.*/
+
     public int size() {
         return size();
 
@@ -85,20 +87,26 @@ public class ArrayDeque <T> {
     If no such item exists, returns null.
     */
     public T removeFirst() {
-        if (items[nextFirst + 1] == null) {
-            return null;
-        }
+        T temp = items[nextFirst];
         nextFirst += 1;
+        if (nextFirst > items.length) {
+            nextFirst = 0;
+        }
+
         size -= 1;
-        return items[nextFirst + 1];
+        items[nextFirst] = null;
+        return temp;
 
     }
 
     public T removeLast() {
-        if (items[nextLast - 1] == null) {
-            return null;
-        }
+        T temp = items[nextLast];
+
         nextLast -= 1;
+        if (nextLast < 0) {
+            nextFirst = items.length - 1;
+        }
+        items[nextLast] = null;
         size -= 1;
         return items[nextLast - 1];
     }
@@ -107,27 +115,56 @@ public class ArrayDeque <T> {
         if (index > size) {
             return null;
         }
+        index = (nextFirst + 1 + index) % items.length;
+
         return items[index];
     }
 
     public void printDeque() {
 
-        int temp = nextFirst - 1;
-        for (int i = 0; i < items.length + 2; i++) {
-            if (items[temp] != null) {
+        int temp = (nextFirst +1) % items.length;
+        for (int i = 0; i < size; i++) {
                 System.out.print(items[temp] + " ");
+                temp++;
+                temp = temp % items.length;
 
 
             }
-            temp++;
 
-            if (temp > items.length - 1) {
-                temp = 0;
 
-            }
-        }
+
+
 
     }
+
+/*    public static void main(String[] args) {
+        ArrayDeque test = new ArrayDeque();
+        test.addFirst(1);
+        test.addFirst(2);
+        test.addFirst(3);
+        test.addFirst(1);
+        test.addFirst(2);
+        test.addFirst(3);
+        test.addFirst(1);
+        test.addFirst(2);
+        test.addFirst(3);
+        test.addLast(10);
+        test.addLast(14);
+        test.addLast(18);
+        test.addLast(17);
+        test.addLast(16);
+        test.addLast(15);
+        test.addLast(14);
+        //test.removeFirst();
+        test.removeLast();
+        test.addFirst(18);
+  System.out.println( test.get(2));
+  test.printDeque();
+  test.addLast(100);
+
+
+    }*/
 }
+
 
 
