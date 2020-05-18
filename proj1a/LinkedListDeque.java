@@ -291,7 +291,7 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-    /**
+    /*
      * Removes and returns the item at the front of the deque.
      * If no such item exists, returns null.
      */
