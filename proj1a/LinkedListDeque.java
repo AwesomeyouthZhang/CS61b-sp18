@@ -5,9 +5,9 @@ public class LinkedListDeque<T> {
     private IntNode sentinel;
 
     private class IntNode {
-        public T item;
-        public IntNode prev;
-        public IntNode next;
+        private T item;
+        private IntNode prev;
+        private IntNode next;
 
         IntNode(T i, IntNode P, IntNode N) {
             item = i;

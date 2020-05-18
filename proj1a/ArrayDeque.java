@@ -235,7 +235,7 @@ public class ArrayDeque<T> {
         items[plusOne(nextFirst)] = null;
         nextFirst = plusOne(nextFirst);
         size -= 1;
-        if (items.length > 16 && size < items.length * 0.25) {
+        if (items.length > 8 && size < items.length * 0.25) {
             resize(items.length / 2);
         }
         return removed;
@@ -247,7 +247,7 @@ public class ArrayDeque<T> {
         items[minusOne(nextLast)] = null;
         nextLast = minusOne(nextLast);
         size -= 1;
-        if (items.length > 16 && size < items.length * 0.25) {
+        if (items.length > 8 && size < items.length * 0.25) {
             resize(items.length / 2);
         }
         return removed;
@@ -267,6 +267,9 @@ public class ArrayDeque<T> {
     }
 
     public int size() {
+        if (size < 0) {
+            return 0;
+        }
         return size;
     }
 
