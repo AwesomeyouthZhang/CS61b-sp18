@@ -244,6 +244,9 @@ public class IntList {
      * as an input, returns null;
      */
     public static IntList reverse(IntList A) {
+        if (A ==null){
+            return null;
+        }
 
         IntList temp = null;
         IntList C = A.rest;
