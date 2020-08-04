@@ -31,14 +31,13 @@ public class Palindrome {
         Deque<Character> wordList = wordToDeque(word);
         return isPalindromeHelper(wordList);
     }
+
     private boolean isPalindromeHelper(Deque list) {
-        if(list.size() <= 1) {
+        if (list.size() <= 1) {
             return true;
-        }
-        else if (list.removeFirst()!=list.removeLast()) {
+        } else if (list.removeFirst() != list.removeLast()) {
             return false;
-        }
-        else {
+        } else {
             return isPalindromeHelper(list);
         }
     }
