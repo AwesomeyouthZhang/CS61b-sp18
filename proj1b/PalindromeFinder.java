@@ -34,6 +34,7 @@ public class PalindromeFinder {
 
                 }
 
+
             }
             System.out.println(i + "sum = " + sum);
 
