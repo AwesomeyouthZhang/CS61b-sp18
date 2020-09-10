@@ -11,11 +11,17 @@ public class GuitarString {
         //Math.round()当传入float 型，得到int，传入double得到long
         int capacity = (int) Math.round(SR / frequency);
         buffer = new ArrayRingBuffer<Double>(capacity);
+        //初始化
+
+        for (int i = 0; i < buffer.capacity(); i += 1) {
+            buffer.enqueue(0.0);
+        }
     }
     /* Pluck the guitar string by replacing the buffer with white noise. */
     public void pluck() {
         for (int i = 0; i < buffer.capacity(); i += 1) {
             double r = Math.random() - 0.5;//Math.random() 范围为【0-1】，减去0.5则为【-0.5，0.5】
+            buffer.dequeue();//一定别忘了先 dequeue
             buffer.enqueue(r);
         }
 
