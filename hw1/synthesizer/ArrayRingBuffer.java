@@ -70,6 +70,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     private class arrayRingBufferIterator implements Iterator<T> {
         int currentPos;
         int numRemain;
+
         arrayRingBufferIterator() {
             this.currentPos = first;
             this.numRemain = fillCount();
@@ -77,15 +78,15 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
         @Override
         public boolean hasNext() {
-          return numRemain>0;
+            return numRemain > 0;
 
         }
 
         @Override
         public T next() {
             T item = rb[currentPos];
-            currentPos = (currentPos+1) % capacity;
-            numRemain --;
+            currentPos = (currentPos + 1) % capacity;
+            numRemain--;
 
             return item;
         }
