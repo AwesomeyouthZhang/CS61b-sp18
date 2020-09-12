@@ -75,7 +75,7 @@ public class TestArrayDequeGold {
                 + " not equal to " + expectedSize + "!", expectedSize, actualSize);
         for (int i = 0; i < 10; i++) {
             Integer actual = actualList.get(i);
-            Integer expected = expectedList.size();
+            Integer expected = expectedList.get(i);
             assertEquals("Oh noooo!\nThis is bad in removeLast()\n Random number " + actual + "not equal to" + expected + "!"
                     , expected, actual);
 
