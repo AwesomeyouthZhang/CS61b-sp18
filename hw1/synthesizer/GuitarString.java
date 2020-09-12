@@ -2,7 +2,7 @@ package synthesizer;
 
 public class GuitarString {
     private static final int SR = 44100;//sampling rate
-    private static final double DECAY = .996;//energy decay factor
+    private static final double DECAY = 0.996;//energy decay factor
     /*buffer for storing sound data*/
     private BoundedQueue<Double> buffer;
 
