@@ -24,6 +24,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         return this.capacity;
     }
 
+    @Override
     public int fillCount() {
         return fillCount;
     }
@@ -64,14 +65,14 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new arrayRingBufferIterator();
+        return new ArrayRingBufferIterator();
     }
 
-    private class arrayRingBufferIterator implements Iterator<T> {
+    private class ArrayRingBufferIterator implements Iterator<T> {
         int currentPos;
         int numRemain;
 
-        arrayRingBufferIterator() {
+        ArrayRingBufferIterator() {
             this.currentPos = first;
             this.numRemain = fillCount();
         }

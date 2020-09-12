@@ -1,8 +1,10 @@
 package synthesizer;
 
 public class GuitarString {
-    private static final int SR = 44100;//sampling rate
-    private static final double DECAY = 0.996;//energy decay factor
+    //sampling rate
+    private static final int SR = 44100;
+    //energy decay factor
+    private static final double DECAY = 0.996;
     /*buffer for storing sound data*/
     private BoundedQueue<Double> buffer;
 
@@ -21,8 +23,10 @@ public class GuitarString {
     /* Pluck the guitar string by replacing the buffer with white noise. */
     public void pluck() {
         for (int i = 0; i < buffer.capacity(); i += 1) {
-            double r = Math.random() - 0.5;//Math.random() 范围为【0-1】，减去0.5则为【-0.5，0.5】
-            buffer.dequeue();//一定别忘了先 dequeue
+            //Math.random() 范围为【0-1】，减去0.5则为【-0.5，0.5】
+            double r = Math.random() - 0.5;
+            //一定别忘了先 dequeue
+            buffer.dequeue();
             buffer.enqueue(r);
         }
 
