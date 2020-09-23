@@ -6,7 +6,7 @@ A:
 -----
 Q: If you were to start working on world generation, what kind of method would you think of writing first? 
 Think back to the lab and the process used to eventually get to tesselating hexagons.
-
+s
 A:
 
 -----
