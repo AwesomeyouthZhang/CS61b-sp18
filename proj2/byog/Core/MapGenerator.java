@@ -111,7 +111,7 @@ class WorldGenerator {
     private void makeInitialEntrance(Position initialEntryPosition) {
         world[initialEntryPosition.x][initialEntryPosition.y] = Tileset.LOCKED_DOOR;
     }
-
+//一个房间2个门
     /* Makes entrance by changing WALL to FLOOR at entryPoint */
     private void makeEntrance(Position entryPoint) {
         world[entryPoint.x][entryPoint.y] = Tileset.FLOOR;
@@ -128,14 +128,15 @@ class WorldGenerator {
         int leftBottomY = leftBottom.y;
         int rightUpperX = rightUpper.x;
         int rightUpperY = rightUpper.y;
-
+// height <= leftBottomY 房间宽度和高度一定得小于 方框的高度
+        //否则肯定为不可达
         if (leftBottomX < 0 || width <= leftBottomX
                 || leftBottomY < 0 || height <= leftBottomY
                 || rightUpperX < 0 || width <= rightUpperX
                 || rightUpperY < 0 || height <= rightUpperY) {
             return false;
         }
-
+//判断重复条件 遍历一遍 只要有重复currentTile == Tileset.WALL || currentTile == Tileset.FLOOR 返回false
         for (int x = leftBottomX; x <= rightUpperX; x += 1) {
             for (int y = leftBottomY; y <= rightUpperY; y += 1) {
                 TETile currentTile = world[x][y];
@@ -250,6 +251,7 @@ class WorldGenerator {
         directions.add(EAST);
         directions.add(SOUTH);
         directions.add(WEST);
+        //去除当前方向，在随机从另外三个方向取出一个，索引值为 链表大小
         directions.remove(getReverseDirection(currentDirection));
         String nextDirection = directions.get(random.nextInt(directions.size()));
 
