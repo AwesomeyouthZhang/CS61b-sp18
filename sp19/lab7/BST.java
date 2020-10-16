@@ -133,6 +133,41 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         root = put(root, key, value);
 
     }
+    private Node remove(Node x, Key key) {
+        if (x ==null) {
+            return null;
+        }
+        int cmp = key.compareTo(x.key);
+        if (cmp > 0) {
+            x.right = remove(x.right,key);
+        }else if (cmp < 0) {
+            x.left = remove(x.left,key);
+        }else {
+            "如果相等"
+            if (x.right ==null) {
+                return x.left;
+            }
+            if (x.left == null) {
+                return x.right;
+            }
+
+        }
+    }
+
+    private Node min(Node x){
+        if (x.left != null) {
+            return min(x.left);
+        }
+        return x;
+    }
+   private Node deleteMin(Node x) {
+        if (x.left ==null) {
+            return x.right;
+        }
+        x.left = deleteMin(x.left);
+        x.size = size(x.left) + size(x.right) + 1;
+        return x;
+   }
 
     private Node put(Node x, Key key, Value value) {
         if (x == null) {
