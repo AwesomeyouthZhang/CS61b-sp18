@@ -1,8 +1,10 @@
-import java.util.Iterator;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.net.HttpRetryException;
+import java.util.*;
+import java.util.function.Consumer;
 
-public class BSTMap<Key extends Comparable,Value> implements Map61B<Key,Value>{
-    BST<Key,Value>  bst= new BST();
+public class BSTMap<Key extends Comparable,Value> implements Map61B<Key,Value> {
+    BST bst= new BST();
 
 
     @Override
@@ -18,7 +20,7 @@ public class BSTMap<Key extends Comparable,Value> implements Map61B<Key,Value>{
 
     @Override
     public Value get(Key key) {
-        return bst.get(key);
+        return (Value) bst.get(key);
     }
 
     @Override
@@ -32,10 +34,15 @@ public class BSTMap<Key extends Comparable,Value> implements Map61B<Key,Value>{
 
     }
 
+
+
     @Override
     public Set<Key> keySet() {
-
-        throw new UnsupportedOperationException();
+        Set<Key> keySet= new TreeSet<>();
+        for (Object key:bst) {
+            keySet.add((Key) key);
+        }
+        return keySet;
     }
 
     @Override
@@ -50,6 +57,18 @@ public class BSTMap<Key extends Comparable,Value> implements Map61B<Key,Value>{
 
     @Override
     public Iterator<Key> iterator() {
-        throw new UnsupportedOperationException();
+        return new Iterator<Key>() {
+            @Override
+            public boolean hasNext() {
+                return bst.iterator().hasNext();
+            }
+
+            @Override
+            public Key next() {
+
+                return null ;
+            }
+        };
     }
+
 }

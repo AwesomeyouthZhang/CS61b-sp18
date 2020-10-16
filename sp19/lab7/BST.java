@@ -1,4 +1,68 @@
-public class BST<Key extends Comparable, Value> {
+import java.util.*;
+
+public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
+
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<Key> iterator() {
+
+        return new BSTIterator( root);
+    }
+
+    public class BSTIterator implements Iterator<Key> {
+
+        private List<Key> inOrderList;
+        private Iterator<Key> it;
+
+        public BSTIterator(Node root) {
+            inOrderList = new ArrayList<>();
+            inOrder(root);
+
+            it = this.inOrderList.iterator();
+
+        }
+
+        private void inOrder(Node x) {
+            if (x != null) {
+                inOrder(x.left);
+                inOrderList.add(x.key);
+                inOrder(x.right);
+            }
+
+
+        }
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+
+            return this.it.hasNext();
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public Key next() {
+            return this.it.next();
+        }
+    }
+
+
     private class Node {
         private Key key;
         private Value value;
@@ -6,7 +70,7 @@ public class BST<Key extends Comparable, Value> {
         private int size;
 
         public Node() {
-            root =null;
+            root = null;
             size = 0;
 
         }
@@ -83,9 +147,13 @@ public class BST<Key extends Comparable, Value> {
         } else {
             x.value = value;
         }
-            x.size = size(x.left) + size(x.right) + 1;
+        x.size = size(x.left) + size(x.right) + 1;
         return x;
+
     }
 
 
+
 }
+
+
