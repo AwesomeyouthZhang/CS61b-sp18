@@ -46,6 +46,16 @@ public class Room extends RectangleHelper {
  * I've tried to sort rooms by x and check by order
  * but it has problems in vector y.
  * Generate rooms and return rooms. Create four random positions on room's edges.
+ * Overlap checked method.
+ * First check if a point in the room.
+ * Then calculate four corner points.
+ * Finally check if these four points in the room.
+ * Print room method.
+ * When meet the edge, break.
+ * Create a random room with position, width and height.  Remove overlapped rooms by check every room.
+ * I've tried to sort rooms by x and check by order
+ * but it has problems in vector y.
+ * Generate rooms and return rooms. Create four random positions on room's edges.
  *//*
 
     public Room(int height, int width, Position position) {
@@ -283,7 +293,7 @@ public class Room extends RectangleHelper {
      */
 
     public static List<Room> roomGenerator(Random RANDOM, TETile[][] world) {
-        int numberOfRooms = 10 + RANDOM.nextInt(50);
+        int numberOfRooms = 100 + RANDOM.nextInt(50);
         List<Room> rooms = new ArrayList<Room>();
         for (int i = 0; i < numberOfRooms; i++) {
             rooms.add(randomRoom(RANDOM, world));
@@ -484,8 +494,8 @@ public class Room extends RectangleHelper {
         drawVerticalHallway(world);
         drawHorizontalHallway(world);
 
-         drawCorner(world);
-             drawFloor(world);
+        drawCorner(world);
+        drawFloor(world);
 
     }
   /*  public void printRoom(TETile[][] world) {
