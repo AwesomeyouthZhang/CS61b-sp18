@@ -27,6 +27,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 
         }
 
+
         private void inOrder(Node x) {
             if (x != null) {
                 inOrder(x.left);
@@ -62,7 +63,16 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         }
     }
 
+public Value remove(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("calls delete() with a null key");
 
+        }
+        Value value = get(key);
+        root = remove(root,key);
+        return value;
+
+}
     private class Node {
         private Key key;
         private Value value;
@@ -143,15 +153,24 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         }else if (cmp < 0) {
             x.left = remove(x.left,key);
         }else {
-            "如果相等"
+           /**"如果相等,且没有左右两儿子，直接连接其左右儿树Node"*/
             if (x.right ==null) {
                 return x.left;
             }
             if (x.left == null) {
                 return x.right;
             }
+            Node temp = x;
+            /**一定得写成temp. */
+            x = min(temp.right);
+            x.right = deleteMin(temp.right);
+            x.left = temp.left;
+
+
 
         }
+        x.size = size(x.left)+ size(x.right) +1;
+        return  x;
     }
 
     private Node min(Node x){

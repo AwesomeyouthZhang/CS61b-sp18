@@ -47,7 +47,7 @@ public class BSTMap<Key extends Comparable,Value> implements Map61B<Key,Value> {
 
     @Override
     public Value remove(Key key) {
-        throw new UnsupportedOperationException();
+        return (Value) bst.remove(key);
     }
 
     @Override
