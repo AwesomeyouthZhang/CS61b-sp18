@@ -28,7 +28,8 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int leftIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+
+        return 2 * i ;
     }
 
     /**
@@ -36,7 +37,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int rightIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return 2 * i + 1;
     }
 
     /**
@@ -44,7 +45,13 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int parentIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        if (i == 1) {
+            return 1;
+        }
+        else {
+            return i / 2;
+        }
+
     }
 
     /**
@@ -108,7 +115,8 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        swap(min(index,index/2),index/2);
+        swim(index / 2);
     }
 
     /**
@@ -117,6 +125,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     private void sink(int index) {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
         validateSinkSwimArg(index);
+        
 
         /** TODO: Your code here. */
         return;
